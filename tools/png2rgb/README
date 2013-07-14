@@ -1,0 +1,9 @@
+The png2rgb.py script converts .png files to RGB text file and visa versa.
+Usage: python png2rgb.py [png2rgb|rgb2png|png2gray] INPUT_FILE OUTPUT_FILE
+
+To be able to use the script, you need to install the pypng library as follows.
+1. tar -czvf pypng-0.0.9.tar.gz
+2. cd pypng-0.0.9
+3. python setup.py build
+4. python setup.py install
+
