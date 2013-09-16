@@ -4,7 +4,8 @@
 
 #include "rgbimage.h"
 
-#include "npu.h"
+//Hadi: #include "npu.h"
+#include <stdio.h>
 
 UINT8	Lqt [BLOCK_SIZE];
 UINT8	Cqt [BLOCK_SIZE];
@@ -62,157 +63,25 @@ UINT8* encodeMcu(
 	UINT32 imageFormat,
 	UINT8 *outputBuffer
 ) {
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
 
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
+	//HADI: MAGIC_INST;
+	int iii;
+	for (iii = 0; iii < BLOCK_SIZE - 1; ++iii) {
+		printf("%f ", Y1[iii] / 255.);
+	}
+	printf("%f\n", Y1[iii] / 255.);
 
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-	NPU_Q_INST(Y1[0]);
-
-	MAGIC_INST;
 	levelShift(Y1);
 	dct(Y1);
 	quantization(Y1, ILqt);
-	MAGIC_INST;
 
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
-	NPU_Q_INST(Temp[0]);
+	for (iii = 0; iii < BLOCK_SIZE - 1; ++iii) {
+		printf("%f ", Temp[iii] / 128.);
+	}
+	printf("%f\n", Temp[iii] / 128.);
 
 	outputBuffer = huffman(1, outputBuffer);
+	//HADI: MAGIC_INST;
 
 #if 0
 	if (imageFormat != GRAY) {

@@ -1,10 +1,10 @@
-COMPILE_MODE=NPU_VALIDATION
+COMPILE_MODE=VANILLA_RUN
 
 CC=g++
 CFLAGS=-O3 -MD
 C0FLAGS=-O1 -MD
 
-INCLUDES=-I../tools -I../Npu 
+INCLUDES=#-I../tools -I../Npu 
 
 LFLAGS=# -L/home/newhall/lib  -L../lib
 
@@ -52,8 +52,8 @@ $(OBJS0): $(SRCS0)
 clean:
 	$(RM) *.o *.d
 
-dist:
-	$(RM) *.o *.d $(OUT_DIR)/*
+distclean:
+	$(RM) *.o *.d $(OUT_DIR)/*.out $(OUT_DIR)/*.asm 
 
 test:
 	$(OUT_DIR)/$(OUT)

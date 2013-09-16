@@ -8,13 +8,13 @@
 
 #include "rgbimage.h"
 
-#include "ptlcalls.h"
-#include "npu.h"
+//#include "ptlcalls.h"
+//#include "npu.h"
 
 #define OUT_BUFFER_SIZE 262144 // in bytes
 
 int main (int argc, const char* argv[]) {
-	char inputFileName[32], outputFileName[32];
+	char inputFileName[64], outputFileName[64];
 	UINT32 qualityFactor;
 	UINT32 imageFormat;
 
@@ -23,13 +23,10 @@ int main (int argc, const char* argv[]) {
 
 	UINT8 *outputBufferPtr;
 
-	if (argc > 1) {
-		strcpy(inputFileName, "./data/baboon-220px.rgb");
-		strcpy(outputFileName, "./data/baboon-220px.rgb.jpg");
-	} else {
-		strcpy(inputFileName, "/root/data/baboon-220px.rgb");
-		strcpy(outputFileName, "/root/data/baboon-220px.rgb.jpg");
-	}
+	strcpy(inputFileName, "./data/peppers.rgb");
+	strcpy(outputFileName, "./data/peppers.rgb.jpg");
+
+	printf("inputFileName: %s\n", inputFileName);
 
 	qualityFactor = 1024;
 	imageFormat = GRAY;
@@ -37,9 +34,9 @@ int main (int argc, const char* argv[]) {
 	RgbImage srcImage;
 	initRgbImage(&srcImage);
 	if (loadRgbImage(inputFileName, &srcImage) == 0) {
-		printf("Error! Oops: Cannot load the input image!\n");
+		printf("Error! Oops: Cannot load the input image: %s!\n", inputFileName);
 
-		ptlcall_kill();
+		//HADI: ptlcall_kill();
 		return -1;
 	}
 
@@ -48,23 +45,23 @@ int main (int argc, const char* argv[]) {
 	outputBuffer = (UINT8 *) malloc(OUT_BUFFER_SIZE * sizeof(UINT8));
 
 	/* Start the simulation */
-	ptlcall_switch_to_sim();
-	ptlcall_single_flush("-snapshot-now");
-	printf("Starting the simulation ...\n");
-	printf("The first magic instruction!\n");
+	//HADI: ptlcall_switch_to_sim();
+	//HADI: ptlcall_single_flush("-snapshot-now");
+	//HADI: printf("Starting the simulation ...\n");
+	//HADI: printf("The first magic instruction!\n");
 
-	MAGIC_INST_START;
+	//HADI: MAGIC_INST_START;
 
 	outputBufferPtr = outputBuffer;
 	outputBufferPtr = encodeImage(
 		&srcImage, outputBufferPtr, qualityFactor, imageFormat
 	);
 
-	MAGIC_INST_STOP;
-	printf("The last magic instruction!\n");
-	printf("Stopping the simulation!\n");
-	ptlcall_single_flush("-snapshot-now");
-	ptlcall_single_flush("-stop");
+	//HADI: MAGIC_INST_STOP;
+	//HADI: printf("The last magic instruction!\n");
+	//HADI: printf("Stopping the simulation!\n");
+	//HADI: ptlcall_single_flush("-snapshot-now");
+	//HADI: ptlcall_single_flush("-stop");
 	/* Stop the simulation */
 
 	freeRgbImage(&srcImage);
@@ -76,7 +73,7 @@ int main (int argc, const char* argv[]) {
 	}
 	free(outputBuffer);
 
-	ptlcall_kill();
+	//HADI: ptlcall_kill();
 	return 0;
 }
 
